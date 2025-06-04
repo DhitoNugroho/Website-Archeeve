@@ -1,4 +1,3 @@
-// src/pages/HomePage.js
 import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 import ArticleCard from '../components/ArticleCard';

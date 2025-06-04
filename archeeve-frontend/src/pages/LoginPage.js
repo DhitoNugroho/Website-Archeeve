@@ -1,4 +1,3 @@
-// src/pages/LoginPage.js
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Sesuaikan path jika perlu

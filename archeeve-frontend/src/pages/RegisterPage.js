@@ -1,8 +1,7 @@
-// src/pages/RegisterPage.js
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // Sesuaikan path jika perlu
-import { UserIcon, EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/outline'; // Contoh ikon
+import { useAuth } from '../context/AuthContext'; 
+import { UserIcon, EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/outline'; 
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -10,13 +9,13 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null); // Bisa string atau objek untuk multiple errors
+  const [error, setError] = useState(null); 
   const history = useHistory();
-  const { register, login } = useAuth(); // Asumsi register tidak otomatis login
+  const { register, login } = useAuth(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); // Reset error
+    setError(null); 
 
     if (password !== passwordConfirmation) {
       setError({ password_confirmation: ['Password confirmation does not match.'] });
@@ -25,8 +24,6 @@ const RegisterPage = () => {
     setLoading(true);
     try {
       await register(name, email, password, passwordConfirmation);
-      // Setelah register sukses, bisa otomatis login atau arahkan ke halaman login
-      // Contoh: otomatis login
       await login(email, password);
       history.push('/dashboard'); // Arahkan ke dashboard
     } catch (err) {

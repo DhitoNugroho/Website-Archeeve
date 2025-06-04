@@ -1,10 +1,9 @@
-// src/components/CommentForm.js
 import React, { useState } from 'react';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
 const CommentForm = ({ articleId, onCommentSubmitted }) => {
-  const { isAuthenticated, user } = useAuth(); // Mengambil status autentikasi dan data pengguna
+  const { isAuthenticated, user } = useAuth(); 
   const [content, setContent] = useState('');
   const [guestName, setGuestName] = useState('');
   const [guestEmail, setGuestEmail] = useState('');
@@ -27,11 +26,10 @@ const CommentForm = ({ articleId, onCommentSubmitted }) => {
     if (!isAuthenticated) {
       // Validasi sisi klien: jika nama tamu atau email tamu kosong
       if (!guestName.trim() || !guestEmail.trim()) { // Tambahkan .trim() untuk menghindari spasi kosong
-        // Pesan error ini SESUAI dengan yang Anda lihat di screenshot.
-        // Ini berarti kondisi !isAuthenticated adalah true, dan salah satu field tamu kosong.
+
         setError('Guest name and email are required for unauthenticated comments.');
         setLoading(false);
-        return; // Hentikan pengiriman
+        return; 
       }
       // Jika validasi sisi klien lolos, tambahkan nama dan email tamu ke data
       commentData.guest_name = guestName.trim();
@@ -52,7 +50,7 @@ const CommentForm = ({ articleId, onCommentSubmitted }) => {
       setGuestEmail('');
       
       if (onCommentSubmitted) {
-          // Update UI secara optimis (langsung tampilkan komentar baru)
+          // Update UI secara optimis 
           // Backend akan memberikan ID asli dan status 'approved' yang sebenarnya.
           onCommentSubmitted({
             id: Date.now(), // ID sementara untuk React key, akan diganti saat data asli dari backend diterima
@@ -63,7 +61,7 @@ const CommentForm = ({ articleId, onCommentSubmitted }) => {
             content: content,
             created_at: new Date().toISOString(),
             approved: false, // Asumsikan komentar baru menunggu moderasi
-            // Anda mungkin perlu menyertakan field lain yang dikembalikan API dan dibutuhkan komponen parent
+            
           });
       }
     } catch (err) {

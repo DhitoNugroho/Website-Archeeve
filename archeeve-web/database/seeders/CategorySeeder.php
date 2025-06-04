@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-// Hapus 'use Illuminate\Database\Console\Seeds\WithoutModelEvents;' jika tidak digunakan atau jika menyebabkan error
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents; 
 use Illuminate\Database\Seeder;
-use App\Models\Category; // Pastikan path ke model Category Anda benar
-use Illuminate\Support\Str; // Untuk membuat slug
+use App\Models\Category; 
+use Illuminate\Support\Str; 
 
 class CategorySeeder extends Seeder
 {
@@ -19,7 +17,6 @@ class CategorySeeder extends Seeder
             'Teknologi', 'Gaya Hidup', 'Perjalanan', 'Kuliner', 'Olahraga',
             'Pendidikan', 'Bisnis', 'Seni & Budaya', 'Kesehatan', 'Opini',
             'Berita', 'Pengembangan Diri', 'Keuangan', 'Hobi', 'Otomotif',
-            // Tambahan 10 kategori baru
             'Musik', 'Film', 'Sains', 'Lingkungan', 'Sejarah',
             'Fotografi', 'Gaming', 'Parenting', 'Resep', 'DIY & Kerajinan'
         ];
@@ -32,11 +29,6 @@ class CategorySeeder extends Seeder
             ]);
         }
 
-        // Anda bisa menambahkan lebih banyak kategori di sini jika diperlukan
-        // Contoh:
-        // Category::create(['name' => 'Lingkungan Hidup', 'slug' => 'lingkungan-hidup']);
-
-        // Untuk memberi tahu di console bahwa seeder berjalan (opsional)
-        // $this->command->info('Category table seeded!');
+        
     }
 }

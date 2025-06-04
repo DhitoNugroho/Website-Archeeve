@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Opsional: Custom CSS Anda di sini jika ada (tetapi ini harus di bawah direktif @tailwind) */
 .prose img {
   max-width: 100%;
   height: auto;

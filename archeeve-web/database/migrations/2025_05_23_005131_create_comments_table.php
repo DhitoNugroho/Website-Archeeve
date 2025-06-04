@@ -13,9 +13,9 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null'); // Nullable jika komentar anonim
             $table->foreignId('article_id')->constrained()->onDelete('cascade');
             $table->text('content');
-            $table->string('guest_name')->nullable(); // Untuk komentar anonim
-            $table->string('guest_email')->nullable(); // Untuk komentar anonim
-            $table->boolean('approved')->default(false); // Untuk moderasi
+            $table->string('guest_name')->nullable(); 
+            $table->string('guest_email')->nullable(); 
+            $table->boolean('approved')->default(false); 
             $table->timestamps();
         });
     }

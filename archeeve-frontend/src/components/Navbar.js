@@ -1,7 +1,6 @@
 import React from 'react';
-// Pastikan semua komponen dari react-router-dom yang digunakan telah diimpor
 import { NavLink, Link, useHistory, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // Sesuaikan path jika perlu
+import { useAuth } from '../context/AuthContext'; 
 
 const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
@@ -30,8 +29,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   };
 
   const isNavLinkActive = (path) => {
-    // Untuk path root "/", kita ingin match yang eksak.
-    // Untuk path lain, kita ingin match jika pathname dimulai dengan path tersebut (untuk sub-rute).
+    
     if (path === "/") {
       return location.pathname === path;
     }

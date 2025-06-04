@@ -1,4 +1,3 @@
-// src/pages/TagPage.js
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; // useParams masih di support v5
 import api from '../services/api';

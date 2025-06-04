@@ -17,9 +17,9 @@ const AdminRoute = ({ component: Component, ...rest }) => {
         isAuthenticated && isAdmin ? (
           <Component {...props} />
         ) : isAuthenticated ? (
-          <Redirect to="/dashboard" /> // Redirect user biasa ke dashboard mereka
+          <Redirect to="/dashboard" /> 
         ) : (
-          <Redirect to="/login" /> // Redirect jika belum login
+          <Redirect to="/login" /> 
         )
       }
     />

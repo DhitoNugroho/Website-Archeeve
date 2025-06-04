@@ -1,4 +1,3 @@
-// src/components/admin/UserForm.js
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 
@@ -10,8 +9,7 @@ const UserForm = ({ user, onSave, onCancel }) => {
   const [role, setRole] = useState('user');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState = (null); // Perbaikan: Hapus = (null) di sini
-
+  const [success, setSuccess] = useState = (null); 
   const isEditMode = !!user;
 
   useEffect(() => {
@@ -23,10 +21,10 @@ const UserForm = ({ user, onSave, onCancel }) => {
       setName('');
       setEmail('');
       setPassword('');
-      setPasswordConfirmation(''); // Perbaikan: set passwordConfirmation juga
+      setPasswordConfirmation(''); 
       setRole('user');
     }
-  }, [user, isEditMode]); // Pastikan dependency array ini sesuai
+  }, [user, isEditMode]); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
-use App\Models\Tag; // Import Tag model
+use App\Models\Tag; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -146,18 +146,17 @@ class ArticleController extends Controller
             });
 
             foreach ($submittedTagNames as $tagName) {
-                if (empty($tagName)) continue; // Lewati jika nama tag kosong setelah trim
-
+                if (empty($tagName)) continue; 
                 $tag = Tag::firstOrCreate(
-                    ['name' => $tagName], // Cari berdasarkan nama
-                    ['slug' => Str::slug($tagName)] // Buat slug jika tag baru
+                    ['name' => $tagName], 
+                    ['slug' => Str::slug($tagName)] 
                 );
                 $tagIds[] = $tag->id;
             }
             if (!empty($tagIds)) {
                 $article->tags()->sync($tagIds);
             } else {
-                $article->tags()->detach(); // Hapus semua tag jika array tag kosong
+                $article->tags()->detach(); 
             }
         }
 
@@ -255,9 +254,6 @@ class ArticleController extends Controller
             // Sync akan menghapus tag yang tidak ada di $tagIds dan menambahkan yang baru
             $article->tags()->sync($tagIds); 
         }
-        // Jika $request->has('tags') adalah false, maka tag tidak diubah.
-        // Jika Anda ingin agar tidak mengirim field 'tags' berarti "jangan ubah tag",
-        // dan mengirim 'tags' (meskipun array kosong) berarti "hapus semua tag", maka logika ini sudah benar.
 
         return response()->json($article->load(['user:id,name', 'category:id,name,slug', 'tags:id,name,slug']));
     }

@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
-use App\Models\Article; // Pastikan model Article di-import jika ada validasi 'exists:articles,id'
+use App\Models\Article; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log; // Opsional, untuk debugging jika terjadi error tak terduga
+use Illuminate\Support\Facades\Log; 
 
 class CommentController extends Controller
 {
@@ -130,7 +130,7 @@ class CommentController extends Controller
     }
 
     // Admin only: Delete a comment
-    public function destroy($id) // Anda bisa menggunakan Route Model Binding: public function destroy(Comment $comment)
+    public function destroy($id) 
     {
         $comment = Comment::find($id);
         if (!$comment) {

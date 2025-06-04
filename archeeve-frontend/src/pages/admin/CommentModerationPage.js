@@ -1,4 +1,3 @@
-// src/pages/admin/CommentModerationPage.js
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api'; // Sesuaikan path jika perlu

@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail; // Uncomment jika Anda menggunakan verifikasi email
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens; // Untuk Laravel Sanctum (jika digunakan)
-use Tymon\JWTAuth\Contracts\JWTSubject; // Untuk Tymon JWT Auth
-use Illuminate\Support\Facades\Storage; // Diperlukan jika Anda ingin menambahkan accessor untuk URL gambar
+use Laravel\Sanctum\HasApiTokens; 
+use Tymon\JWTAuth\Contracts\JWTSubject; 
+use Illuminate\Support\Facades\Storage; 
 
-class User extends Authenticatable implements JWTSubject // Hapus MustVerifyEmail jika tidak digunakan
+class User extends Authenticatable implements JWTSubject 
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -24,9 +24,9 @@ class User extends Authenticatable implements JWTSubject // Hapus MustVerifyEmai
         'email',
         'password',
         'role',
-        'bio',                  // <-- DITAMBAHKAN
-        'profile_image_path',   // <-- DITAMBAHKAN (untuk path relatif di storage)
-        'profile_image_url',    // <-- DITAMBAHKAN (untuk URL lengkap yang bisa diakses)
+        'bio',                  
+        'profile_image_path',   
+        'profile_image_url',    
     ];
 
     /**
@@ -37,7 +37,7 @@ class User extends Authenticatable implements JWTSubject // Hapus MustVerifyEmai
     protected $hidden = [
         'password',
         'remember_token',
-        'profile_image_path', // Sembunyikan path internal jika hanya URL yang ingin diekspos via API
+        'profile_image_path', 
     ];
 
     /**
@@ -81,9 +81,7 @@ class User extends Authenticatable implements JWTSubject // Hapus MustVerifyEmai
     {
         return [
             'role' => $this->role,
-            // Anda bisa menambahkan data lain ke JWT jika perlu
-            // 'name' => $this->name,
-            // 'profile_image_url' => $this->profile_image_url, // Atau this->getFullProfileImageUrlAttribute() jika pakai accessor
+            
         ];
     }
 
@@ -93,22 +91,5 @@ class User extends Authenticatable implements JWTSubject // Hapus MustVerifyEmai
         return $this->hasMany(Article::class);
     }
 
-    /**
-     * Accessor contoh untuk profile_image_url.
-     * Gunakan ini jika Anda HANYA menyimpan profile_image_path di database.
-     * Jika Anda sudah menyimpan profile_image_url secara langsung di database melalui controller,
-     * maka accessor ini mungkin tidak diperlukan, atau bisa disesuaikan.
-     * Pastikan nama accessor (getFullProfileImageUrlAttribute) unik dan $appends di atas di-uncomment.
-     */
-    /*
-    public function getFullProfileImageUrlAttribute(): ?string
-    {
-        if ($this->profile_image_path && Storage::disk('public')->exists($this->profile_image_path)) {
-            return Storage::disk('public')->url($this->profile_image_path);
-        }
-        // Kembalikan URL placeholder default jika tidak ada gambar atau path tidak valid
-        // return asset('images/default-avatar.png'); // Contoh placeholder
-        return null;
-    }
-    */
+
 }

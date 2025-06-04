@@ -1,4 +1,3 @@
-// src/pages/SearchResultsPage.js
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useHistory, Link } from 'react-router-dom';
 import api from '../services/api';

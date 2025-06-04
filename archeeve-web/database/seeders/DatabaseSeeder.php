@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            CategorySeeder::class, // Isi seeder ini
-            TagSeeder::class,      // Isi seeder ini
-            ArticleSeeder::class,  // Isi seeder ini
-            CommentSeeder::class,  // Isi seeder ini
+            CategorySeeder::class, 
+            TagSeeder::class,      
+            ArticleSeeder::class,  
+            CommentSeeder::class,  
         ]);
     }
 }

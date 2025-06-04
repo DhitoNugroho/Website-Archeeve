@@ -122,7 +122,7 @@ const ArticleDetailPage = () => {
   }
 
   return (
-    // Kontainer utama halaman detail artikel. Diasumsikan offset Navbar diurus di level atas.
+    // Kontainer utama halaman detail artikel. 
     <div className="font-sans py-8 md:py-12 px-4"> {/* Tambahkan padding horizontal dasar */}
       <article className="max-w-5xl mx-auto bg-white shadow-xl rounded-xl p-6 sm:p-8 md:p-10 border border-gray-200"> {/* Lebih menonjolkan shadow & border */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 mb-4 leading-tight"> {/* Font lebih tebal, warna sedikit lebih lembut dari hitam pekat */}

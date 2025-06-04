@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme'); // <-- BARIS INI DITAMBAHKAN
+const defaultTheme = require('tailwindcss/defaultTheme'); 
 
 module.exports = {
   content: [
@@ -15,12 +15,12 @@ module.exports = {
                                     // atau '#EEEEEE' jika Anda lebih suka warna custom
       },
       fontFamily:{
-        sans: ['Nunito', ...defaultTheme.fontFamily.sans], // Sekarang defaultTheme sudah terdefinisi
+        sans: ['Nunito', ...defaultTheme.fontFamily.sans], 
       }
     },
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/typography'), // SAYA TAMBAHKAN INI KARENA ANDA MENGGUNAKAN KELAS 'prose' di ArticleDetailPage.js
+    require('@tailwindcss/typography'), 
   ],
 }

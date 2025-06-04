@@ -1,7 +1,6 @@
-// src/pages/CategoriesListPage.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../services/api'; // Sesuaikan path jika perlu
+import api from '../services/api'; 
 
 const CategoriesListPage = () => {
   const [categories, setCategories] = useState([]);
@@ -15,7 +14,6 @@ const CategoriesListPage = () => {
       try {
         // Asumsi endpoint API untuk semua kategori adalah /categories
         const response = await api.get('/categories');
-        // Sesuaikan dengan struktur data API Anda (misal response.data.data atau response.data)
         setCategories(response.data.data || response.data || []);
       } catch (err) {
         setError('Failed to load categories list.');
@@ -67,7 +65,7 @@ const CategoriesListPage = () => {
               className="block p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-yellow-400 transform hover:-translate-y-1" // Ganti hover:border-yellow-400
             >
               <h2 className="text-xl font-semibold text-yellow-600 mb-2 truncate">{category.name}</h2> {/* Ganti text-yellow-600 */}
-              {/* Anda bisa menambahkan jumlah artikel per kategori jika API menyediakan */}
+              {/* menambahkan jumlah artikel per kategori jika API menyediakan */}
               {/* <p className="text-sm text-gray-500">{category.articles_count || 0} articles</p> */}
             </Link>
           ))}

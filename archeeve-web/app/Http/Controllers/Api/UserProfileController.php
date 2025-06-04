@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage; // <-- PASTIKAN INI DI-IMPORT untuk file handling
+use Illuminate\Support\Facades\Storage; 
 use App\Models\User;
-use App\Models\Article; // Diperlukan jika ada relasi 'articles' di model User yang di-load
+use App\Models\Article; 
 
 class UserProfileController extends Controller
 {
@@ -46,10 +46,7 @@ class UserProfileController extends Controller
         }
 
         if ($request->hasFile('profile_picture')) {
-            // Hapus gambar profil lama jika ada dan bukan URL eksternal
-            // Asumsi: Anda menyimpan path relatif di DB (misal di kolom 'profile_image_path')
-            // dan 'profile_image_url' adalah accessor atau juga disimpan.
-            // Untuk kemudahan, kita asumsikan 'profile_image_path' menyimpan path di disk 'public'.
+
             if ($user->profile_image_path && Storage::disk('public')->exists($user->profile_image_path)) {
                 Storage::disk('public')->delete($user->profile_image_path);
             }
@@ -61,7 +58,7 @@ class UserProfileController extends Controller
         }
 
         $user->save();
-        $user->refresh(); // Refresh model untuk mendapatkan data terbaru (termasuk URL gambar)
+        $user->refresh(); 
 
         return response()->json([
             'message' => 'Profile updated successfully!',
@@ -75,8 +72,8 @@ class UserProfileController extends Controller
         $user = Auth::user();
 
         $validator = Validator::make($request->all(), [
-            'current_password' => 'required|string', // Min:6 bisa dihilangkan jika tidak ingin terlalu ketat di sini
-            'new_password' => 'required|string|confirmed|min:8', // Min:8 adalah praktik yang baik
+            'current_password' => 'required|string', 
+            'new_password' => 'required|string|confirmed|min:8', 
         ]);
 
         if ($validator->fails()) {

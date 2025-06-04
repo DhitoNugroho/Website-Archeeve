@@ -1,4 +1,3 @@
-// src/pages/admin/WebsiteSettingsPage.js
 import React, { useState, useEffect, useRef } from 'react';
 import api from '../../services/api'; // Sesuaikan path jika perlu
 import { Cog6ToothIcon, PhotoIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';

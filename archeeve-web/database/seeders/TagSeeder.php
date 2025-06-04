@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-// Hapus 'use Illuminate\Database\Console\Seeds\WithoutModelEvents;' jika tidak digunakan atau menyebabkan error
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Tag; // Pastikan path ke model Tag Anda benar
-use Illuminate\Support\Str; // Untuk membuat slug
+use App\Models\Tag; 
+use Illuminate\Support\Str; 
 
 class TagSeeder extends Seeder
 {
@@ -21,7 +19,6 @@ class TagSeeder extends Seeder
             'Tutorial', 'Startup', 'Produktivitas', 'Kesehatan Mental', 'Indonesia',
             'Teknologi Terbaru', 'Belajar Online', 'Investasi', 'Fotografi',
             'Gaming', 'Alam',
-            // Anda bisa menambahkan lebih banyak tag di sini
             'Tutorial Pemula', 'Tips Produktif', 'Wisata Murah', 'Makanan Viral', 'Game Indie',
             'AI', 'Machine Learning', 'Data Science', 'Cybersecurity', 'Cloud Computing'
         ];
@@ -34,7 +31,6 @@ class TagSeeder extends Seeder
             ]);
         }
 
-        // Untuk memberi tahu di console bahwa seeder berjalan (opsional)
-        // $this->command->info('Tag table seeded!');
+    
     }
 }

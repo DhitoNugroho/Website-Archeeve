@@ -116,14 +116,12 @@ class AdminController extends Controller
         return response()->json(['message' => 'User deleted successfully']);
     }
 
-    // Pengaturan Website (Contoh sederhana)
-    // Untuk pengaturan yang lebih kompleks, bisa pakai table 'settings' atau package 'spatie/laravel-settings'
+    // Pengaturan Website 
     public function getSettings()
     {
-        // Ini contoh hardcode, idealnya dari DB
         return response()->json([
             'site_title' => env('APP_NAME', 'Archoose CMS'),
-            'site_logo_url' => '/storage/site_logo.png', // Contoh
+            'site_logo_url' => '/storage/site_logo.png', 
             'seo_description' => 'A modern CMS for articles',
             'seo_keywords' => 'cms, articles, blog, laravel, react',
         ]);
@@ -142,15 +140,11 @@ class AdminController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        // Logic untuk update settings (simpan ke env atau DB)
-        // Untuk contoh ini, kita hanya akan return success.
-        // Untuk produksi, Anda perlu package setting atau custom table.
 
         if ($request->hasFile('site_logo')) {
-            // Hapus logo lama dan simpan yang baru
-            // Storage::delete('public/site_logo.png'); // Pastikan path benar
+            
             $path = $request->file('site_logo')->storeAs('public', 'site_logo.png');
-            // Logika untuk menyimpan URL ke DB atau env
+            
         }
 
         return response()->json(['message' => 'Website settings updated successfully']);

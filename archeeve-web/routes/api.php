@@ -10,22 +10,10 @@ use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\AdminController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
 // Auth Routes (Publicly Accessible)
 // Grup untuk rute-rute terkait autentikasi.
 Route::group([
-    'middleware' => 'api', // Middleware 'api' biasanya sudah diterapkan secara global untuk file ini oleh RouteServiceProvider.
-                           // Menyatakannya secara eksplisit di sini tidak masalah, tapi bisa juga dihilangkan jika sudah global.
+    'middleware' => 'api', 
     'prefix' => 'auth'
 ], function ($router) {
     Route::post('login', [AuthController::class, 'login']);
@@ -45,12 +33,10 @@ Route::group([
     'middleware' => ['auth:api'], // Memastikan hanya user terautentikasi yang bisa akses.
     'prefix' => 'user'
 ], function () {
-    // Rute untuk update profil. Menggunakan PUT karena ini adalah update resource.
-    // Frontend mengirim FormData dengan _method:PUT, yang akan dihandle Laravel.
+    // Rute untuk update profil. 
     Route::put('profile', [UserProfileController::class, 'updateProfile']);
     
-    // Rute untuk ganti password. Menggunakan PUT.
-    // Frontend harus mengirim request dengan method PUT.
+    // Rute untuk ganti password. 
     Route::put('change-password', [UserProfileController::class, 'changePassword']);
     
     Route::get('articles', [UserProfileController::class, 'userArticles']); // Menampilkan artikel yang ditulis oleh user yang sedang login.
@@ -58,9 +44,7 @@ Route::group([
 
 
 // Public Routes for Articles, Categories, Tags
-// Rute-rute ini umumnya bisa diakses publik untuk menampilkan konten.
-// Middleware 'api' (throttling, dll.) sudah diterapkan secara global oleh RouteServiceProvider.
-Route::get('articles', [ArticleController::class, 'index']); // Menampilkan semua artikel yang sudah publish (dengan paginasi).
+Route::get('articles', [ArticleController::class, 'index']); // Menampilkan semua artikel yang sudah publish.
 Route::get('articles/search', [ArticleController::class, 'searchArticles']); // Rute untuk pencarian artikel.
 Route::get('articles/{slug}', [ArticleController::class, 'show']); // Menampilkan detail satu artikel berdasarkan slug.
 
@@ -70,7 +54,7 @@ Route::get('categories/{slug}/articles', [CategoryController::class, 'getArticle
 Route::get('tags', [TagController::class, 'index']); // Menampilkan daftar semua tag.
 Route::get('tags/{slug}/articles', [TagController::class, 'getArticlesByTagSlug']); // Menampilkan artikel berdasarkan slug tag.
 
-// Rute untuk membuat komentar. Bisa diakses guest atau user login, tergantung implementasi controller.
+// Rute untuk membuat komentar. Bisa diakses guest atau user login.
 Route::post('comments', [CommentController::class, 'store']);
 
 
@@ -80,7 +64,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('articles', [ArticleController::class, 'store']); // Membuat artikel baru.
     
     // Rute untuk mengambil data artikel spesifik untuk form edit.
-    // Menggunakan {id} karena ini mungkin lebih mudah untuk otorisasi pemilik artikel.
     Route::get('articles/{id}/edit', [ArticleController::class, 'getArticleForEdit']);
     
     Route::put('articles/{id}', [ArticleController::class, 'update']); // Update artikel.
@@ -88,7 +71,6 @@ Route::group(['middleware' => ['auth:api']], function () {
 });
 
 // Admin Routes (Admin Only)
-// Grup untuk rute yang hanya bisa diakses oleh admin.
 Route::group([
     'middleware' => ['auth:api', 'role:admin'], // Memastikan user terautentikasi DAN memiliki role 'admin'.
     'prefix' => 'admin'

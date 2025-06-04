@@ -8,7 +8,7 @@ const MobileHeader = ({ setSidebarOpen }) => {
     <header className="bg-yellow-300 p-4 text-gray-800 flex justify-between items-center md:hidden shadow-md"> {/* KUNING TERANG & TEKS GELAP */}
       <button
         className="text-gray-800 text-2xl" /* TEKS GELAP */
-        onClick={() => setSidebarOpen(true)} // <--- TOMBOL HAMBURGER UNTUK MEMBUKA SIDEBAR
+        onClick={() => setSidebarOpen(true)} 
       >
         ☰ {/* Hamburger Icon */}
       </button>

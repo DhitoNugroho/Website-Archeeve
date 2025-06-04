@@ -1,39 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Ambil base URL Laravel dari environment variable, atau gunakan default untuk pengembangan lokal
 const LARAVEL_API_URL = process.env.REACT_APP_LARAVEL_API_URL || "http://localhost:8000";
 
 const ArticleCard = ({ article }) => {
-  // --- PERBAIKAN LOGIKA UNTUK URL GAMBAR ---
   let imageUrlToDisplay;
 
-  // Cek apakah backend mengirim 'image_url' (jika ada, prioritaskan) atau 'image'
-  // dari objek 'article' yang diterima sebagai prop.
   const imagePathFromApi = article.image_url || article.image;
 
   if (imagePathFromApi && typeof imagePathFromApi === 'string') {
-    // Jika imagePathFromApi sudah merupakan URL lengkap (dimulai dengan http:// atau https://)
+    
     if (imagePathFromApi.startsWith('http://') || imagePathFromApi.startsWith('https://')) {
       imageUrlToDisplay = imagePathFromApi;
     } else {
-      // Jika imagePathFromApi adalah path relatif (misalnya "storage/articles_images/file.png")
-      // Gabungkan dengan LARAVEL_API_URL.
-      // Pastikan tidak ada garis miring ganda jika imagePathFromApi dimulai dengan '/'
+      
       const cleanPath = imagePathFromApi.startsWith('/') ? imagePathFromApi.substring(1) : imagePathFromApi;
       imageUrlToDisplay = `${LARAVEL_API_URL}/${cleanPath}`;
     }
   } else {
-    // Fallback jika tidak ada path gambar atau path tidak valid, gunakan UI Avatars
+    
     imageUrlToDisplay = `https://ui-avatars.com/api/?name=${encodeURIComponent(article.title || 'A')}&background=F3F4F6&color=8E8E8E&size=400x250&font-size=0.33&bold=true&format=svg`;
   }
-  // --- AKHIR PERBAIKAN ---
-
+  
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full transition-shadow duration-300 hover:shadow-xl">
       <Link to={`/articles/${article.slug}`} className="block group">
         <img
-          src={imageUrlToDisplay} // Gunakan variabel yang sudah diperbaiki
+          src={imageUrlToDisplay} 
           alt={article.title || 'Article image'}
           className="w-full h-52 object-cover transition-transform duration-300 group-hover:scale-105"
         />
