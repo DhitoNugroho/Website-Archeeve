@@ -1,0 +1,9 @@
+# Laravel - archeeve-web
+/archeeve-web/vendor
+/archeeve-web/node_modules
+/archeeve-web/.env
+/archeeve-web/storage/*.key
+
+# React - archeeve-frontend
+/archeeve-frontend/node_modules
+/.DS_Store
